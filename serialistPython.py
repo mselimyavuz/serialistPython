@@ -197,8 +197,8 @@ print("\nTone Matrix\n")
 printMatrix(mn, switch)
 
 voices = 4 # how many voices in the polyphony
-MIN_ITERATION = 1
-MAX_ITERATION = 2
+MIN_ITERATION = 30
+MAX_ITERATION = 50
 
 iterations = np.random.randint(MIN_ITERATION, MAX_ITERATION) # how many rows to use
 oEnsemble = []
@@ -262,11 +262,8 @@ while i < iterations:
     clock1 = session.fork(part, args=(session, piano1, dEnsemble[0][i], tEnsemble[0][i], rEnsemble[0][i], oEnsemble[0][i], "Piano #1"))
     clock2 = session.fork(part, args=(session, piano2, dEnsemble[1][i], tEnsemble[1][i], rEnsemble[1][i], oEnsemble[1][i], "Piano #2"))
     clock3 = session.fork(part, args=(session, piano3, dEnsemble[2][i], tEnsemble[2][i], rEnsemble[2][i], oEnsemble[2][i], "Piano #3"))
-    clock4 = session.fork(part, args=(session, piano3, dEnsemble[3][i], tEnsemble[3][i], rEnsemble[3][i], oEnsemble[3][i], "Piano #4"))
-
+    clock4 = session.fork(part, args=(session, piano4, dEnsemble[3][i], tEnsemble[3][i], rEnsemble[3][i], oEnsemble[3][i], "Piano #4"))
     wait_for_children_to_finish()
-    wait(5)
-
     i += 1
 performance = session.stop_transcribing()
 performance.to_score().show()
